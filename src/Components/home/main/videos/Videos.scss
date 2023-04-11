@@ -1,0 +1,20 @@
+.videos {
+  width: 100%;
+  overflow-x: hidden;
+
+  .card_swipper {
+    width: 100%;
+  }
+}
+
+.recommend_video {
+  width: 100% !important;
+}
+
+// @media screen and (max-width: 330px) {
+//   .card_swipper {
+//     border: 1px solid blue;
+//     width: 84% !important;
+//     overflow-x: hidden !important;
+//   }
+// }

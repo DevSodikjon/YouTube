@@ -1,0 +1,38 @@
+.header_items {
+  // gap: 500px;
+  justify-content: space-between;
+  .form {
+    width: 600px;
+
+    input {
+      width: 100%;
+    }
+
+    .active {
+      display: none;
+    }
+  }
+}
+
+// @media screen and (max-width: 350px) {
+//   .header_items {
+//     width: 84%;
+//   }
+//   .header_items_navLeft {
+//     display: flex !important;
+//     gap: 0px !important;
+//   }
+//   .logo {
+//     display: flex !important;
+//     gap: 0px !important;
+//   }
+//   .burgerIcons {
+//     display: none;
+//   }
+
+//   .input_search {
+//     form {
+//       display: none;
+//     }
+//   }
+// }
