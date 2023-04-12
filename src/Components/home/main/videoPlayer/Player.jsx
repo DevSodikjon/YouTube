@@ -93,7 +93,7 @@ const Player = () => {
             <div className="comments mt-10 mb-10 flex gap-3">
               <div className="user_avatar w-40 rounded-full">
                 <img
-                  className="rounded-full"
+                  className="rounded-full w-full"
                   src={
                     elComment.snippet.topLevelComment.snippet
                       .authorProfileImageUrl

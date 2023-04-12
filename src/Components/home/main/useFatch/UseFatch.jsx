@@ -15,7 +15,7 @@ const useFatch = (url) => {
     url: url,
     params: { playlistId: "RDZiQo7nAkQHU", part: "snippet", maxResults: "50" },
     headers: {
-      "X-RapidAPI-Key": "3835a2aaf2msh34dd9250078695ep16b1cfjsnb3d22bf45a4b",
+      "X-RapidAPI-Key": "0609d3bf43msh5fca50d95f95888p1e0a1fjsn851fecfcf3bd",
       "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com"
     }
   };
