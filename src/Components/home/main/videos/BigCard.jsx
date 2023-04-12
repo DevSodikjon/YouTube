@@ -4,7 +4,6 @@ const BigCard = (props) => {
   const { id, img, videoId, title, author, published } = props;
   return (
     <>
-      {" "}
       <div className="card h-68 border w-94">
         <div className="card_items">
           <div className="image">

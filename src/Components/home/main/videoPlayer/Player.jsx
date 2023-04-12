@@ -13,27 +13,24 @@ import dataVideos from "../videos/data";
 
 const Player = () => {
   const { id } = useParams();
-  // const { data, loading, error } = useFatch(
-  //   "https://youtube-v31.p.rapidapi.com/playlistItems"
-  // );
 
+  console.log(id);
   const { dataComments } = useFetchComm(
     "https://youtube-v31.p.rapidapi.com/commentThreads"
   );
-  // let title;
-  // let desc;
-  // let author;
-  // let date;
+
+  let title;
+  let desc;
+  let author;
+  let date;
   console.log(dataComments);
-  // data.map((el) => {
-  //   console.log(el.kind);
-  //   const element = el.kind;
-  //   title = element.snippet.title;
-  //   desc = element.snippet.description;
-  //   date = element.snippet.publishedAt;
-  //   author = element.snippet.videoOwnerChannelTitle;
+  // dataComments.map((el) => {
+  //   // if (el.snippet.videoId === id) {
+  //   title = el.snippet.topLevelComment.snippet.authorDisplayName;
+  //   // } else {
+  //   // title = "not found";
+  //   // }
   // });
-  // console.log(id);
   return (
     <>
       <div className="player w-5/6 ml-2 max-sm:w-full">
@@ -50,9 +47,7 @@ const Player = () => {
           </div>
 
           <div className="title mt-5 max-sm:m-2">
-            <h1 className=" text-3xl font-bold">
-              Mana senga olam olam gul etaginga siqqanicha ol
-            </h1>
+            <h1 className=" text-3xl font-bold"></h1>
           </div>
 
           <div className="function_parts flex items-center justify-between mt-1 max-sm:flex-col">
@@ -94,18 +89,34 @@ const Player = () => {
 
           <hr className=" mt-4" />
 
-          <div className="comments mt-10 mb-10 flex gap-3">
-            <div className="user_avatar w-40 rounded-full">
-              <img src={user} alt="user avatar" />
-            </div>
-            <div className="user_info">
-              <div className="title">
-                <h3>Food & Drink</h3>
-                <div className="date">{/* <p>{date}</p> */}</div>
+          {dataComments.map((elComment) => (
+            <div className="comments mt-10 mb-10 flex gap-3">
+              <div className="user_avatar w-40 rounded-full">
+                <img
+                  className="rounded-full"
+                  src={
+                    elComment.snippet.topLevelComment.snippet
+                      .authorProfileImageUrl
+                  }
+                  alt="user avatar"
+                />
               </div>
-              <div className="comment mt-4">{/* <p>{desc}</p> */}</div>
+              <div className="user_info">
+                <div className="title">
+                  <h3>
+                    {
+                      elComment.snippet.topLevelComment.snippet
+                        .authorDisplayName
+                    }
+                  </h3>
+                  <div className="date">
+                    {elComment.snippet.topLevelComment.snippet.publishedAt}
+                  </div>
+                </div>
+                <div className="comment mt-4">{/* <p>{desc}</p> */}</div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </>

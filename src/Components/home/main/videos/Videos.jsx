@@ -1,13 +1,16 @@
 import { React, useState, useEffect } from "react";
-import me from "../../../../img/me.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
+import useFatch from "../useFatch/UseFatch";
+import UseFetchRec from "../useFetchRec/UseFetchRec";
+import me from "../../../../img/me.jpg";
+import user from "../../../../img/user.png";
+import { Link } from "react-router-dom";
+import BigCard from "./BigCard";
+import dataVideos from "./data";
+import Card from "./Card";
 import "../videos/Videos.scss";
 import "swiper/css";
-import Card from "./Card";
-import { Link } from "react-router-dom";
-import dataVideos from "./data";
-import BigCard from "./BigCard";
-import useFatch from "../useFatch/UseFatch";
+import UseFetchAll from "../useFatchAll/UseFetchAll";
 
 const Videos = () => {
   const [maxWidth, setMaxWidth] = useState(400);
@@ -16,13 +19,19 @@ const Videos = () => {
     setMaxWidth(window.innerWidth);
   }, [window.innerWidth]);
 
-  // const { data, loading, error } = useFatch(
-  //   "https://youtube-v31.p.rapidapi.com/playlistItems"
-  // );
-  // console.log(data);
-  // useEffect(() => {
-  //   useFatch();
-  // }, []);
+  const { data, loading, error } = useFatch(
+    "https://youtube-v31.p.rapidapi.com/playlistItems"
+  );
+  console.log(data);
+
+  const { dataRec, loadingRec, errorRec } = UseFetchRec(
+    "https://youtube-v31.p.rapidapi.com/search"
+  );
+
+  const { dataAll, loadingAll, errorAll } = UseFetchAll(
+    "https://youtube-v31.p.rapidapi.com/captions"
+  );
+  console.log(dataAll);
 
   return (
     <>
@@ -47,7 +56,7 @@ const Videos = () => {
               onSlideChange={() => console.log("slide change")}
               onSwiper={(swiper) => console.log(swiper)}
             >
-              {dataVideos.map((data, id) => (
+              {data.map((data, id) => (
                 <SwiperSlide key={id}>
                   <Card
                     key={data.id}
@@ -74,16 +83,31 @@ const Videos = () => {
                   onSlideChange={() => console.log("slide change")}
                   onSwiper={(swiper) => console.log(swiper)}
                 >
-                  {dataVideos.map((data, id) => (
+                  {dataRec.map((data, id) => (
                     <SwiperSlide key={id}>
                       <BigCard
                         key={data.id}
                         id={data.id}
+                        videoId={data.id.videoId}
                         img={data.snippet.thumbnails.high.url}
                         title={data.snippet.title}
-                        videoId={data.snippet.resourceId.videoId}
                         author={data.snippet.videoOwnerChannelTitle}
                         published={data.snippet.publishedAt.slice(0, 7)}
+                        // key={data.id}
+                        // id={data.id}
+                        // img={
+                        //   data.snippet.topLevelComment.snippet
+                        //     .authorProfileImageUrl
+                        // }
+                        // title={data.snippet.topLevelComment.snippet.textDisplay}
+                        // videoId={data.snippet.videoId}
+                        // author={
+                        //   data.snippet.topLevelComment.snippet.authorDisplayName
+                        // }
+                        // published={data.snippet.topLevelComment.snippet.publishedAt.slice(
+                        //   0,
+                        //   7
+                        // )}
                       />
                     </SwiperSlide>
                   ))}
@@ -102,15 +126,16 @@ const Videos = () => {
               onSlideChange={() => console.log("slide change")}
               onSwiper={(swiper) => console.log(swiper)}
             >
-              {dataVideos.map((data, id) => (
+              {dataAll.map((data, id) => (
                 <SwiperSlide key={id}>
                   <Card
                     key={data.id}
                     id={data.id}
-                    img={data.snippet.thumbnails.high.url}
-                    title={data.snippet.title}
-                    author={data.snippet.videoOwnerChannelTitle}
-                    published={data.snippet.publishedAt.slice(0, 7)}
+                    img={user}
+                    videoId={data.snippet.videoId}
+                    title={data.snippet.name}
+                    author={data.snippet.audioTrackType}
+                    published={data.snippet.lastUpdated.slice(0, 7)}
                   />
                 </SwiperSlide>
               ))}
