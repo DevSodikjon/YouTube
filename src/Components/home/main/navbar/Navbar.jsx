@@ -20,7 +20,7 @@ const Navbar = ({ active }) => {
   return (
     <>
       {active && (
-        <div className="navbar pt-11 border mx-1 w-56 bg-white">
+        <div className="navbar pt-11 mx-1 w-56 bg-white">
           <div className="navbar_items">
             <ul className=" mb-11">
               <li className=" mb-2 hover:bg-zinc-300 ..., cursor-pointer rounded-lg p-2">

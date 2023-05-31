@@ -6,7 +6,7 @@ import Videos from "./main/videos/Videos";
 import VideoPlayer from "./main/videoPlayer/VideoPlayer";
 
 const Home = () => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const handleModal = () => {
     setActive(!active);
   };
